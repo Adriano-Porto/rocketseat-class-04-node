@@ -1,7 +1,7 @@
 import { expect, describe, it } from "vitest"
 import { AnswerQuestionUseCase } from "./answer-question"
-import { AnswersRespository } from "@/respositories/answers-repository"
-import { Answer } from "../entities/answer"
+import { AnswersRespository } from "@/domain/forum/application/respositories/answers-repository"
+import { Answer } from "../../enterprise/entities/answer"
 
 const answersRepository: AnswersRespository = {
     create: async (answer: Answer) => {
