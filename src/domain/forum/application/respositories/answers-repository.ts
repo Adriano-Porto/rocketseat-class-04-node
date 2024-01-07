@@ -6,5 +6,5 @@ export interface AnswersRespository {
     save(question: Answer): Promise<void>
     delete(answer: Answer): Promise<void>
     findById(id: string): Promise<Answer | null>
-    findManyByQuestionId(params: PaginationParams): Promise<Answer[]>
+    findManyByQuestionId(questionId: string, params: PaginationParams): Promise<Answer[]>
 }
