@@ -32,12 +32,13 @@ describe("Fetch Questions Questions UseCase", () => {
             await makeQuestionComment({questionId: newQuestion.id})
         )
 
-        const { questionComments } = await sut.execute({
+        const result = await sut.execute({
             questionId: newQuestion.id.toString(),
             page : 1
         })
 
-        expect(questionComments).toHaveLength(3)
+        expect(result.isRight()).toBe(true)
+        expect(result.value?.questionComments).toHaveLength(3)
     })
 
     it("should be able to get paginated question questions", async () => {
@@ -60,7 +61,10 @@ describe("Fetch Questions Questions UseCase", () => {
             page: 2
         })
 
-        expect(fetchPageOne.questionComments).toHaveLength(20)
-        expect(fetchPageTwo.questionComments).toHaveLength(5)
+        expect(fetchPageOne.isRight()).toBe(true)
+        expect(fetchPageTwo.isRight()).toBe(true)
+
+        expect(fetchPageOne.value?.questionComments).toHaveLength(20)
+        expect(fetchPageTwo.value?.questionComments).toHaveLength(5)
     })
 })

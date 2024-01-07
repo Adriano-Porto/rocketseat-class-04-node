@@ -32,12 +32,14 @@ describe("Fetch Answers Answers UseCase", () => {
             await makeAnswer({questionId: newQuestion.id})
         )
 
-        const { answers } = await sut.execute({
+        const result = await sut.execute({
             questionId: newQuestion.id.toString(),
             page : 1
         })
 
-        expect(answers).toHaveLength(3)
+
+        expect(result.isRight()).toBe(true)
+        expect(result.value?.answers).toHaveLength(3)
         
         
     })
@@ -62,7 +64,10 @@ describe("Fetch Answers Answers UseCase", () => {
             page: 2
         })
 
-        expect(fetchPageOne.answers).toHaveLength(20)
-        expect(fetchPageTwo.answers).toHaveLength(5)
+        expect(fetchPageOne.isRight()).toBe(true)
+        expect(fetchPageTwo.isRight()).toBe(true)
+
+        expect(fetchPageOne.value?.answers).toHaveLength(20)
+        expect(fetchPageTwo.value?.answers).toHaveLength(5)
     })
 })

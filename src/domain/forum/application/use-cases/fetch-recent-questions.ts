@@ -1,3 +1,4 @@
+import { Either, right } from "@/core/either"
 import { Question } from "../../enterprise/entities/question"
 import { QuestionsRespository } from "../respositories/questions-repository"
 
@@ -5,10 +6,9 @@ interface FetchRecentQuestionsUseCaseInput {
     page: number
 }
 
-interface FetchRecentQuestionsUseCaseOutput {
+type FetchRecentQuestionsUseCaseOutput = Either<null, { 
     questions: Question[]
-}
-
+ }>
 export class FetchRecentQuestionsUseCase {
     constructor(private questionsRepository: QuestionsRespository) {}
 
@@ -17,6 +17,6 @@ export class FetchRecentQuestionsUseCase {
     }: FetchRecentQuestionsUseCaseInput): Promise<FetchRecentQuestionsUseCaseOutput> {
         const questions = await this.questionsRepository.findManyRecent({ page })
 
-        return { questions }
+        return right({ questions })
     }
 }

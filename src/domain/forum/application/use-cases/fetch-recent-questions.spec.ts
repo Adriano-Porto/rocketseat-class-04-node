@@ -23,10 +23,11 @@ describe("Fetch Recent Questions UseCase", () => {
             await makeQuestion({createdAt: new Date(2022, 0, 22)})
         )
 
-        const { questions } = await sut.execute({page : 1})
+        const result = await sut.execute({page : 1})
 
-        expect(questions).toHaveLength(3)
-        expect(questions[0]).toEqual(expect.objectContaining({
+        expect(result.isRight()).toBe(true)
+        expect(result.value?.questions).toHaveLength(3)
+        expect(result.value?.questions[0]).toEqual(expect.objectContaining({
             createdAt: new Date(2022, 0, 22)
         }))
         
@@ -43,12 +44,16 @@ describe("Fetch Recent Questions UseCase", () => {
         const fetchPageOne = await sut.execute({page : 1})
         const fetchPageTwo = await sut.execute({page: 2})
 
-        expect(fetchPageOne.questions).toHaveLength(20)
-        expect(fetchPageOne.questions[0]).toEqual(expect.objectContaining({
+        expect(fetchPageOne.isRight()).toBe(true)
+        expect(fetchPageTwo.isRight()).toBe(true)
+
+        expect(fetchPageOne.value?.questions).toHaveLength(20)
+        expect(fetchPageTwo.value?.questions).toHaveLength(5)
+
+        expect(fetchPageOne.value?.questions[0]).toEqual(expect.objectContaining({
             createdAt: new Date(2022, 0, 25)
         }))
-        expect(fetchPageTwo.questions).toHaveLength(5)
-        expect(fetchPageTwo.questions[4]).toEqual(expect.objectContaining({
+        expect(fetchPageTwo.value?.questions[4]).toEqual(expect.objectContaining({
             createdAt: new Date(2022, 0, 1)
         }))
         

@@ -36,12 +36,13 @@ describe("Edit Answer UseCase", () => {
         
         await inMemoryAnswersRepository.create(newAnswer)
 
-        expect(sut.execute({
+        const result = await sut.execute({
             answerId: "answer-1",
             authorId: "author-2",
             content: "world"
-        })).rejects.toBeInstanceOf(Error)
+        })
 
+        expect(result.isLeft()).toBe(true)
         expect(inMemoryAnswersRepository.items).toHaveLength(1)
     })
     
