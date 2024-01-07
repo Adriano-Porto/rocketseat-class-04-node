@@ -1,5 +1,6 @@
 import { AnswerCommentsRepository } from "@/domain/forum/application/respositories/answer-comments-repository"
 import { AnswerComment } from "@/domain/forum/enterprise/entities/answer-comment"
+import { PaginationParams } from "coverage/core/repositories/pagination-params"
 
 export class InMemoryAnswerCommentsRepository implements AnswerCommentsRepository {
     public items: AnswerComment[] = []
@@ -18,6 +19,15 @@ export class InMemoryAnswerCommentsRepository implements AnswerCommentsRepositor
         if (!answercomment) return null
 
         return answercomment
+    }
+
+    async findManyByAnswerId(questionId: string, { page }: PaginationParams): Promise<AnswerComment[]> {
+        const questioncomments = await this.items
+            .filter((item) => item.answerId.toString() === questionId)
+            .sort((a, b) => b.createdAt.getTime() - a.createdAt.getTime())
+            .slice((page -1 ) * 20, page * 20)
+
+        return questioncomments
     }
     
 }
