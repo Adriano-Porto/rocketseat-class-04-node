@@ -1,17 +1,17 @@
 import { expect, describe, it } from "vitest"
 import { InMemoryQuestionsRepository } from "test/repositories/in-memory-questions-repository"
 import { CommentOnQuestionUseCase } from "./comment-on-question"
-import { InMemoryQuestionCommentsRepository } from "test/repositories/in-memory-question-comments-repository"
+import { InMemoryQuestionCommentRepository } from "test/repositories/in-memory-question-comments-repository"
 import { makeQuestion } from "test/factories/make-question"
 
 let inMemoryQuestionsRepository: InMemoryQuestionsRepository
-let inMemoryQuestionCommentsRepository: InMemoryQuestionCommentsRepository
+let inMemoryQuestionCommentsRepository: InMemoryQuestionCommentRepository
 let sut: CommentOnQuestionUseCase
 
 describe("Create Question", () => {
     beforeEach(() => {
         inMemoryQuestionsRepository = new InMemoryQuestionsRepository()
-        inMemoryQuestionCommentsRepository = new InMemoryQuestionCommentsRepository()
+        inMemoryQuestionCommentsRepository = new InMemoryQuestionCommentRepository()
         sut = new CommentOnQuestionUseCase(inMemoryQuestionsRepository, inMemoryQuestionCommentsRepository)
     })
     it("should be able to create question", async () => {
