@@ -2,7 +2,7 @@ import { expect, describe, it } from "vitest"
 import { DeleteAnswerCommentUseCase } from "./delete-answer-comment"
 import { makeAnswerComment } from "test/factories/make-answer-comment"
 import { InMemoryAnswerCommentsRepository } from "test/repositories/in-memory-answers-comment"
-import { NotAllowedError } from "./errors/not-allowed-error"
+import { NotAllowedError } from "@/core/errors/errors/not-allowed-error"
 
 let inMemoryAnswerCommentsRepository: InMemoryAnswerCommentsRepository
 let sut: DeleteAnswerCommentUseCase
