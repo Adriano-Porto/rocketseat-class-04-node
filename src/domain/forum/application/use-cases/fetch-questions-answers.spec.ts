@@ -4,15 +4,21 @@ import { makeQuestion } from "test/factories/make-question"
 import { InMemoryQuestionsRepository } from "test/repositories/in-memory-questions-repository"
 import { FetchQuestionAnswersUseCase } from "./fetch-questions-answers"
 import { makeAnswer } from "test/factories/make-answer"
+import { InMemoryQuestionAttachmentRepository } from "test/repositories/in-memory-questions-attachments-repository"
+import { InMemoryAnswerAttachmentRepository } from "test/repositories/in-memory-answers-attachment"
 
 let inMemoryAnswersRepository: InMemoryAnswersRepository
 let inMemoryQuestionsRepository: InMemoryQuestionsRepository
-let sut: FetchQuestionAnswersUseCase
+let inMemoryAnswersAttachmentsRepository: InMemoryAnswerAttachmentRepository
 
+let sut: FetchQuestionAnswersUseCase
+let inMemoryQuestionAttachmentRepository: InMemoryQuestionAttachmentRepository
 describe("Fetch Answers Answers UseCase", () => {
     beforeEach(() => {
-        inMemoryAnswersRepository = new InMemoryAnswersRepository()
-        inMemoryQuestionsRepository = new InMemoryQuestionsRepository()
+        inMemoryAnswersAttachmentsRepository = new InMemoryAnswerAttachmentRepository()
+        inMemoryAnswersRepository = new InMemoryAnswersRepository(inMemoryAnswersAttachmentsRepository)
+        inMemoryQuestionAttachmentRepository = new InMemoryQuestionAttachmentRepository()
+        inMemoryQuestionsRepository = new InMemoryQuestionsRepository(inMemoryQuestionAttachmentRepository)
         sut = new FetchQuestionAnswersUseCase(inMemoryAnswersRepository)
     })
     it("should be able to fetch recent answers", async () => {

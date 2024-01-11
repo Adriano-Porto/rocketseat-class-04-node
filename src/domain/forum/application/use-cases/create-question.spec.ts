@@ -2,13 +2,17 @@ import { expect, describe, it } from "vitest"
 import { CreateQuestionUseCase } from "./create-question"
 import { InMemoryQuestionsRepository } from "test/repositories/in-memory-questions-repository"
 import { UniqueEntityID } from "@/core/entities/unique-entity-id"
+import { InMemoryQuestionAttachmentRepository } from "test/repositories/in-memory-questions-attachments-repository"
 
 let inMemoryQuestionsRepository: InMemoryQuestionsRepository
+let inMemoryQuestionAttachmentRepository: InMemoryQuestionAttachmentRepository
 let sut: CreateQuestionUseCase
 
 describe("Create Question", () => {
     beforeEach(() => {
-        inMemoryQuestionsRepository = new InMemoryQuestionsRepository()
+        inMemoryQuestionAttachmentRepository = new InMemoryQuestionAttachmentRepository()
+        inMemoryQuestionsRepository = new InMemoryQuestionsRepository(inMemoryQuestionAttachmentRepository)
+
         sut = new CreateQuestionUseCase(inMemoryQuestionsRepository)
     })
     it("should be able to create question", async () => {
