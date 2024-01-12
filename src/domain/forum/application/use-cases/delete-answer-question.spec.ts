@@ -3,7 +3,7 @@ import { InMemoryAnswersRepository } from "test/repositories/in-memory-answers-r
 import { UniqueEntityID } from "@/core/entities/unique-entity-id"
 import { makeAnswer } from "test/factories/make-answer"
 import { DeleteAnswerUseCase } from "./delete-answer-question"
-import { InMemoryAnswerAttachmentRepository } from "test/repositories/in-memory-answers-attachment"
+import { InMemoryAnswerAttachmentRepository } from "test/repositories/in-memory-answers-attachment-repository"
 import { makeAnswerAttachment } from "test/factories/make-answer-attachment"
 
 let inMemoryAnswersRepository: InMemoryAnswersRepository

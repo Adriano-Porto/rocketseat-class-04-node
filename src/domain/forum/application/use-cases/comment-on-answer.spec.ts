@@ -2,8 +2,8 @@ import { expect, describe, it } from "vitest"
 import { InMemoryAnswersRepository } from "test/repositories/in-memory-answers-repository"
 import { CommentOnAnswerUseCase } from "./comment-on-answer"
 import { makeAnswer } from "test/factories/make-answer"
-import { InMemoryAnswerCommentsRepository } from "test/repositories/in-memory-answers-comment"
-import { InMemoryAnswerAttachmentRepository } from "test/repositories/in-memory-answers-attachment"
+import { InMemoryAnswerCommentsRepository } from "test/repositories/in-memory-answers-comment-repository"
+import { InMemoryAnswerAttachmentRepository } from "test/repositories/in-memory-answers-attachment-repository"
 
 let inMemoryAnswersRepository: InMemoryAnswersRepository
 let inMemoryAnswerCommentsRepository: InMemoryAnswerCommentsRepository

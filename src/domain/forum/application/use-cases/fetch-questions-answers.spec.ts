@@ -5,7 +5,7 @@ import { InMemoryQuestionsRepository } from "test/repositories/in-memory-questio
 import { FetchQuestionAnswersUseCase } from "./fetch-questions-answers"
 import { makeAnswer } from "test/factories/make-answer"
 import { InMemoryQuestionAttachmentRepository } from "test/repositories/in-memory-questions-attachments-repository"
-import { InMemoryAnswerAttachmentRepository } from "test/repositories/in-memory-answers-attachment"
+import { InMemoryAnswerAttachmentRepository } from "test/repositories/in-memory-answers-attachment-repository"
 
 let inMemoryAnswersRepository: InMemoryAnswersRepository
 let inMemoryQuestionsRepository: InMemoryQuestionsRepository

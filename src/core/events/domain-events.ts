@@ -5,8 +5,8 @@ import { DomainEvent } from "./domain-event"
 type DomainEventCallback = (event: any) => void
 
 export class DomainEvents {
-    private static handlersMap: Record<string, DomainEventCallback[]> = {}
-    private static markedAggregates: AggregateRoot<any>[] = []
+    private static handlersMap: Record<string, DomainEventCallback[]> = {} //  //
+    private static markedAggregates: AggregateRoot<any>[] = [] // Events that are not ready to be consumed yet //
 
     public static markAggregateForDispatch(aggregate: AggregateRoot<any>) {
         const aggregateFound = !!this.findMarkedAggregateByID(aggregate.id)

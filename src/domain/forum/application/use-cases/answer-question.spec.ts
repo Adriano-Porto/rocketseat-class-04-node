@@ -2,7 +2,7 @@ import { expect, describe, it } from "vitest"
 import { AnswerQuestionUseCase } from "./answer-question"
 import { InMemoryAnswersRepository } from "test/repositories/in-memory-answers-repository"
 import { UniqueEntityID } from "@/core/entities/unique-entity-id"
-import { InMemoryAnswerAttachmentRepository } from "test/repositories/in-memory-answers-attachment"
+import { InMemoryAnswerAttachmentRepository } from "test/repositories/in-memory-answers-attachment-repository"
 
 let inMemoryAnswersRepository: InMemoryAnswersRepository
 let inMemoryAnswersAttachmentRepository: InMemoryAnswerAttachmentRepository
